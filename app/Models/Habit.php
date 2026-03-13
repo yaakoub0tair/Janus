@@ -18,12 +18,20 @@ class Habit extends Model
         'is_active',
         'user_id'
     ];
+    protected function casts(): array
+    {
+        return [
+            'is_active'=>'boolean'
+        ];
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function isActive() {
-        return $this->is_active;
+
+    public function logs()
+    {
+        return $this->hasMany(HabitLog::class);
     }
 }
